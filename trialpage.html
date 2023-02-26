@@ -1,0 +1,20 @@
+<script>
+var barLayer = new L.GeoJSON.AJAX("json/eat_drink/bar.geojson", {
+    pointToLayer: function(feature, latlng) {
+        var icon = L.icon({
+                        iconSize: [27, 27],
+                        iconAnchor: [13, 27],
+                        popupAnchor:  [1, -24],
+                        iconUrl: 'icon/' + feature.properties.amenity + '.png'
+                        });
+        return L.marker(latlng, {icon: icon})
+    }, 
+    onEachFeature: function(feature, layer) {
+        layer.bindPopup(feature.properties.name + ': ' + feature.properties.opening_hours);
+    }
+});
+</script>
+
+onEachFeature: function(feature, layer) {
+    layer.bindPopup('Name: ' + feature.properties.Name);
+}
