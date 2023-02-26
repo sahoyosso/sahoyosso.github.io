@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<!--
+	Story by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+	Downloaded Dec 28th, 2022 for personal use
+-->
+<html>
+	<head>
+		<title> Projects | Sarah Hoyos Personal Website</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+
+         <!-- Leaflet Refs -->
+		<link rel="stylesheet" href="assests/css/leaflet.css" />
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin=""/>
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+        <!-- Marker Cluster Refs -->
+		<link rel="stylesheet" href="assests/css/MarkerCluster.css">
+		
+
+	</head>
+	<header>
+		<h3>Navigation</h3>
+	</header>
+	<div class="content">
+
+		
+		<ul class="actions fit small">
+			<li><a href="index.html" class="button fit small"> Home</a></li>
+			<li><a href="Page_About.html" class="button fit small"> About</a></li>
+			<li><a href="Page_Projects.html" class="button fit small"> Projects</a></li>
+			<li><a href="Page_Gallery.html" class="button fit small"> Gallery</a></li>
+			<!-- <li><a href="#" class="button fit small">Fit + Small</a></li> -->
+
+		</ul>
+		
+
+	</div>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="divided">
+
+				<!-- <hr /> -->
+				<section>
+					<!-- Additional Elements -->
+					<section class="wrapper style1 align-center">
+						<div class="inner">
+							<h2> Projects </h2>
+							<!-- <p>Finally, here are some additional elements you <em>might</em> find useful (and yup, they look fine with any <span class="demo-controls">appearance</span>).</p> -->
+							
+                            <div class="index align-left">
+									
+									<section>
+										<header>
+											<h3> Map </h3>
+                                            <p>Finally, here are some additional elements you <em>might</em> find useful (and yup, they look fine with any <span class="demo-controls">appearance</span>).</p> 
+							
+										</header>
+										<div class= "wrapper style1 align-right">
+											<div id="mapID" style="width: 600px; height: 400px; margin: 0 0 1rem 1.5rem;"></div>
+											</div>
+									</section>
+                                </section>
+
+				</section>
+
+
+											
+											
+
+				<!-- Five <div class="index align-right" style="width: 600px; height: 400px;"-->
+					
+
+				<!-- Six -->
+					
+
+				<!-- Seven -->
+				
+					
+				<!-- Footer -->
+					<footer class="wrapper style1 align-center">
+						<div class="inner">
+							<ul class="icons">
+								<!-- <li><a href="#" class="icon brands style2 fa-twitter"><span class="label">Twitter</span></a></li> -->
+								<li><a href="https://github.com/sahoyosso" class="icon brands style2 fa-github"><span class="label">Github</span></a></li>
+								<li><a href="https://ca.linkedin.com/in/sarah-hoyos-hoyos" class="icon brands style2 fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
+								
+							</ul>
+							<p>&copy; SarahHoyos. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+
+			<!-- Make sure you put this AFTER Leaflet's CSS -->
+			<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+ 			integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+ 			crossorigin=""></script>
+
+            <script src="leaflet.js"></script>
+			<script src="assets/js/leaflet.markercluster.js"></script>
+            
+			<script>  var map = L.map('mapID').setView([43.3010, -79.8319], 10);
+			L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', 
+					{
+    					maxZoom: 19,
+    					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+						}).addTo(map); 
+			
+
+             $.getJSON("assets/maps/ham_waterfalls.geojson",function(data)
+             {
+            // <!--- L.geoJson function is used to parse geojson file and load on to map ---->
+             L.geoJson(data, {
+			 	pointToLayer: function(feature, latlng){
+			 		return L.marker(latlng);
+			 	}
+			 }).addTo(map);
+                     });
+			
+
+			</script> 
+
+	</body>
+</html>
