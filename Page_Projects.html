@@ -188,7 +188,7 @@
 			var map = L.map('mapID').setView([43.3010, -79.8319], 10);
 
 			//Add tile basemap //
-			L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', 
+			L.tileLayer('https://tile.openstreetmap.de/{z}/{x}/{y}.png', 
 					{
     					maxZoom: 19,
     					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
@@ -202,7 +202,7 @@
                 {
                 L.geoJson(waterdata, {
 			 		onEachFeature: function (feature, layer) {
-			 			const popupContent =  (feature.properties.Name);
+						layer.bindPopup(feature.properties.Name);
 			 	},
 			    	pointToLayer: function(feature, latlng){
 			    		return markers.addLayer(L.marker(latlng));
