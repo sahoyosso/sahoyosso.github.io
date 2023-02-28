@@ -18,3 +18,30 @@ var barLayer = new L.GeoJSON.AJAX("json/eat_drink/bar.geojson", {
 onEachFeature: function(feature, layer) {
     layer.bindPopup('Name: ' + feature.properties.Name);
 }
+https://gis.stackexchange.com/questions/111410/displaying-link-in-popup-with-leaflet?rq=1
+
+https://stackoverflow.com/questions/67674516/leaflet-marker-icons-and-markercluster-displaying-together-on-the-map-with-fet
+
+
+<!-- Below is the last layer i used that worked on my site-->
+<script>
+// Fill geoJson data into var 
+			// var waterJS =
+             $.getJSON("assets/maps/ham_waterfalls.geojson",function(waterdata)
+                {
+                L.geoJson(waterdata, {
+			 		onEachFeature: function (feature, layer) {layer.bindPopup(feature.properties.Name);}, pointToLayer: function(feature, latlng){return markers.addLayer(L.marker(latlng));}, 
+				
+			    },);
+			  });
+
+			 //Add data to map
+			 map.addLayer(markers);
+</script>
+{ html: '<b>' + cluster.getChildCount() + '</b>' }
+
+feature.properties.Name + '<br><b></b>' 
+									+ feature.properties.Accesibili + '<br><b></b>' 
+									+ feature.properties.Ownership + '<br><b></b>'
+									+ feature.properties.Property + '<br><b></b>'
+									 

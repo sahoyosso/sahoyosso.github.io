@@ -118,6 +118,8 @@
 			<script>  
 			
 			// Empty variables //
+			//var Pointslayer = L.geoJSON();
+			// Empty variables //
 			var markers = L.markerClusterGroup();
 			//Map variable
 			var map = L.map('mapID').setView([43.3010, -79.8319], 10);
@@ -133,21 +135,30 @@
 
 			// Fill geoJson data into var 
 			// var waterJS =
-             $.getJSON("assets/maps/ham_waterfalls.geojson",function(waterdata)
-                {
-                L.geoJson(waterdata, {
-			 		onEachFeature: function (feature, layer) {
-			 			const popupContent =  (feature.properties.Name);
-			 	},
-			    	pointToLayer: function(feature, latlng){
-			    		return markers.addLayer(L.marker(latlng));
-			    	}, 
+			//var Pointslayer = (
+			fetch("assets/maps/ham_waterfalls.geojson")
+				.then(function(response) {
+					return response.json();
+				})
+    		.then(function(data) {
+        		L.geoJSON(data, {
+            
+            		onEachFeature: function(feature, layer) {
+                	layer.bindPopup(feature.properties.Name + '<br><b></b>' 
+									+ feature.properties.Accesibili + '<br><b></b>' 
+									+ feature.properties.Ownership + '<br><b></b>'
+									+ feature.properties.Property + '<br><b></b>'
+									+"<a href=" + feature.properties.URL + ">" + "Website" + "</a>" );
+            	}
 				
-			    });
-			  });
+				}).addTo(map);
+    		});
+			//);
+			//map.addLayer(markers);
+
 
 			 //Add data to map
-			 map.addLayer(markers);
+			// map.addLayer(markers);
 
 
 			</script> 

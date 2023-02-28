@@ -76,14 +76,14 @@
 											<header>
 												
 												 <p> 
-												 <span class = "image fit"><img src="images\gallery\projects\hamiltonwaterlogo2.jpg" alt="something" /></span> <h3> Urban Waterfalls in Hamilton </h3> Did you know there are waterfalls in Hamilton, Canada? Check the map for locations. (Map still under construction. Might not be visible on mobile) </p>
+												 <span class = "image fit"><img src="images\gallery\projects\hamiltonwaterlogo2.jpg" alt="something" /></span> Check the map for locations. Not all waterfalls are open for the public to access. Parks and areas are ownered by various organizations such as the Hamilton Conservation Authority and City of Hamilton. </p>
 												 
 	
 											</header>
 
 										
 										
-											<div id="mapID" class= "content align-left" style="width: 320px; height: 400px; margin: 0 0 1rem 1.5rem;"></div>
+											<div id="mapID" class= "content align-left" style="width: 320px; height: 450px; margin: 0 0 1rem 1.5rem;"></div>
 											
 									</section> 
 										
@@ -194,25 +194,28 @@
     					attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 						}).addTo(map); 
 
-			// L.geoJSON(pointJSON).addTo(map);
-
-			// Fill geoJson data into var 
-			// var waterJS =
-             $.getJSON("assets/maps/ham_waterfalls.geojson",function(waterdata)
-                {
-                L.geoJson(waterdata, {
-			 		onEachFeature: function (feature, layer) {
-						layer.bindPopup(feature.properties.Name);
-			 	},
-			    	pointToLayer: function(feature, latlng){
-			    		return markers.addLayer(L.marker(latlng));
-			    	}, 
+			
+			//Loading and adding points to map ///
+			fetch("assets/maps/ham_waterfalls.geojson")
+				.then(function(response) {
+					return response.json();
+				})
+    		.then(function(data) {
+        		L.geoJSON(data, {
+            
+            		onEachFeature: function(feature, layer) {
+                	layer.bindPopup(feature.properties.Name + '<br><b></b>' 
+									+ feature.properties.Accesibili + '<br><b></b>' 
+									+ feature.properties.Ownership + '<br><b></b>'
+									+ feature.properties.Property + '<br><b></b>'
+									+"<a href=" + feature.properties.URL + ">" + "Website" + "</a>"
+									 );
+            	}
 				
-			    });
-			  });
+				}).addTo(map);
+    		});
 
-			 //Add data to map
-			 map.addLayer(markers);
+			
 			</script>
 
 	</body>
