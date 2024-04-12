@@ -192,7 +192,23 @@
 
 					</div>
 					<hr/> -->
+					<section class="wrapper style1 align-center">
+						<div class="inner">
+							<section>
+									<header>
+							
+							 			<p> 
+							 				<span class = "image fit"><img src="images\gallery\projects\hamiltonwaterlogo2.jpg" alt="something" /></span> Check the map for locations. Not all waterfalls are open for the public to access. Parks and areas are ownered by various organizations such as the Hamilton Conservation Authority and City of Hamilton. </p>
+							 
+
+									</header>
+							</section>
+
 					
+						   <div id="mapID" class= "content align-left" style="width: 320px; height: 450px; margin: 0 0 1rem 1.5rem;"></div>
+						</div>
+						</section>
+					</section> 
 					
 				</section>
 
@@ -217,6 +233,56 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+
+<!--Leaflet Scr-->
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+<script src="leaflet.js"></script>
+
+<!--MarkerCluster Scr-->
+<script src="assets/js/leaflet.markercluster.js"></script>
+
+
+
+
+<!---Javascript start -->
+<script> 
+
+// Empty variables //
+var markers = L.markerClusterGroup();
+//Map variable
+var map = L.map('mapID').setView([43.3010, -79.8319], 10);
+
+//Add tile basemap //
+L.tileLayer('https://tile.openstreetmap.de/{z}/{x}/{y}.png', 
+		{
+			maxZoom: 19,
+			attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+			}).addTo(map); 
+
+
+//Loading and adding points to map ///
+fetch("assets/maps/ham_waterfalls.geojson")
+	.then(function(response) {
+		return response.json();
+	})
+.then(function(data) {
+	L.geoJSON(data, {
+
+		onEachFeature: function(feature, layer) {
+		layer.bindPopup(feature.properties.Name + '<br><b></b>' 
+						+ feature.properties.Accesibili + '<br><b></b>' 
+						+ feature.properties.Ownership + '<br><b></b>'
+						+ feature.properties.Property + '<br><b></b>'
+						+"<a href=" + feature.properties.URL + ">" + "Website" + "</a>"
+						 );
+	}
+	
+	}).addTo(map);
+});
+</script>
+
+
+
 
 	</body>
 </html>
